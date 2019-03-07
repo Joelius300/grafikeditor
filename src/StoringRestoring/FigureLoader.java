@@ -7,13 +7,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FigureLoader {
     public Figure[] restore(File file) throws Exception {
-        try (Scanner scanner = new Scanner (file, StandardCharsets.ISO_8859_1)) {
+        try (Scanner scanner = new Scanner (file)) {
             ArrayList<Figure> figures = new ArrayList<Figure>();
 
             while (scanner.hasNextLine()){

@@ -16,12 +16,12 @@ public class Main {
         display.add(new Ellipse(100, 100, 30, 40));
 
         // 3.2 & 1.5
-        Line l = new Line(100, 200, 300, 400);
+        Line l = new Line(100, 200, 400, 350);
         l.setFillColor(Color.RED);
         l.move(100, 100);
         display.add(l);
 
-        Figure f = new Line(100, 200, 300, 400);
+        Figure f = new Line(100, 200, 400, 350);
         f.setFillColor(Color.BLUE);
         f.move(100, 100);
         f.move(100, 0);
