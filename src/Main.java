@@ -10,10 +10,10 @@ public class Main {
     private static final Display display = new Display();
 
     public static void main(String[] args){
-        display.add(new Rectangle(10, 30, 10, 40));
-        display.add(new Circle(30, 50, 10));
-        display.add(new Line(5, 5, 30, 40));
-        display.add(new Ellipse(100, 100, 30, 40));
+        display.add(new Rectangle(10, 30, 10, 40, Color.RED));
+        display.add(new Circle(30, 50, 10, Color.BLUE));
+        display.add(new Line(5, 5, 30, 40, Color.YELLOW));
+        display.add(new Ellipse(100, 100, 30, 40, Color.PINK));
 
         // 3.2 & 1.5
         Line l = new Line(100, 200, 400, 350);

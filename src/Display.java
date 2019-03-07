@@ -62,12 +62,12 @@ public class Display extends JFrame {
 
       if (f instanceof Figures.Rectangle) {
         Figures.Rectangle r = (Figures.Rectangle)f;
-        g.drawRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
+        g.fillRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
       }
 
       if (f instanceof Figures.Circle) {
         Figures.Circle c = (Figures.Circle)f;
-        g.drawOval(c.getX(), c.getY(), c.getR(), c.getR());
+        g.fillOval(c.getX(), c.getY(), c.getR(), c.getR());
       }
 
       if (f instanceof Figures.Line) {
@@ -77,7 +77,7 @@ public class Display extends JFrame {
 
       if (f instanceof Figures.Ellipse) {
         Figures.Ellipse e = (Figures.Ellipse)f;
-        g.drawOval(e.getX(), e.getY(), e.getWidth(), e.getHeight());
+        g.fillOval(e.getX(), e.getY(), e.getWidth(), e.getHeight());
       }
 
       /* TODO: Hier muss f�r jede weitere Figur-Klasse, welche dargestellt werden k�nnen muss,

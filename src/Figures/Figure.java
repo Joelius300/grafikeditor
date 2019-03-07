@@ -12,6 +12,12 @@ public class Figure {
         this.y = y;
     }
 
+    protected Figure(int x, int y, Color color){
+        this.x = x;
+        this.y = y;
+        this.fillColor = color;
+    }
+
     public int getX(){ return x; }
     public int getY() { return y; }
 

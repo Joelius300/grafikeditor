@@ -1,10 +1,19 @@
 package Figures;
 
+import java.awt.*;
+
 public class Line extends Figure {
     private int xEnd, yEnd;
 
     public Line(int xStart, int yStart, int xEnd, int yEnd) {
         super(xStart, yStart);
+
+        this.xEnd = xEnd;
+        this.yEnd = yEnd;
+    }
+
+    public Line(int xStart, int yStart, int xEnd, int yEnd, Color color) {
+        super(xStart, yStart, color);
 
         this.xEnd = xEnd;
         this.yEnd = yEnd;
