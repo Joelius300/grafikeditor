@@ -2,7 +2,7 @@ package Figures;
 
 import java.awt.*;
 
-public class Figure {
+public abstract class Figure {
     private int x, y;
 
     private Color fillColor = Color.BLACK;
@@ -33,4 +33,6 @@ public class Figure {
         this.x += deltaX;
         this.y += deltaY;
     }
+
+    public abstract void draw(Graphics g);
 }

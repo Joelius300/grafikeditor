@@ -1,7 +1,8 @@
+import Drawing.Drawing;
 import Figures.*;
 import Figures.Rectangle;
-import StoringRestoring.FigureLoader;
-import StoringRestoring.FigureSaver;
+import Drawing.StoringRestoring.FigureLoader;
+import Drawing.StoringRestoring.FigureSaver;
 
 import java.awt.*;
 import java.io.File;
@@ -10,31 +11,33 @@ public class Main {
     private static final Display display = new Display();
 
     public static void main(String[] args){
-        display.add(new Rectangle(10, 30, 10, 40, Color.RED));
-        display.add(new Circle(30, 50, 10, Color.BLUE));
-        display.add(new Line(5, 5, 30, 40, Color.YELLOW));
-        display.add(new Ellipse(100, 100, 30, 40, Color.PINK));
+        Drawing drawing1 = new Drawing();
+        drawing1.add(new Rectangle(10, 30, 10, 40, Color.RED));
+        drawing1.add(new Circle(30, 50, 10, Color.BLUE));
+        drawing1.add(new Line(5, 5, 30, 40, Color.YELLOW));
+        drawing1.add(new Ellipse(100, 100, 30, 40, Color.PINK));
 
         // 3.2 & 1.5
         Line l = new Line(100, 200, 400, 350);
         l.setFillColor(Color.RED);
+        drawing1.add(l);
         l.move(100, 100);
-        display.add(l);
 
         Figure f = new Line(100, 200, 400, 350);
         f.setFillColor(Color.BLUE);
+        drawing1.add(f);
         f.move(100, 100);
-        f.move(100, 0);
-        display.add(f);
+
 
         FigureSaver saver = new FigureSaver();
-        saver.Save(display.getFigures(), new File("testSave.txt"));
+        saver.Save(drawing1.getFigures(), new File("drawing1.txt"));
 
-        display.deleteAll();
+        display.clear();
 
         FigureLoader loader = new FigureLoader();
         try {
-            display.add(loader.restore(new File("testSave.txt")));
+            Drawing drawing2 = loader.restoreDrawing(new File("drawing1.txt"));
+            display.setDrawing(drawing2);
         }catch (Exception e){
             System.out.println("Konnte nicht zurückladen.");
         }

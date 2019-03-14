@@ -1,42 +1,12 @@
-package StoringRestoring;
+package Drawing.StoringRestoring;
 
 import Figures.*;
 import Figures.Rectangle;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-public class FigureLoader {
-    public Figure[] restore(File file) throws Exception {
-        try (Scanner scanner = new Scanner (file)) {
-            ArrayList<Figure> figures = new ArrayList<Figure>();
-
-            while (scanner.hasNextLine()){
-                String line = scanner.nextLine();
-                //System.out.println(line);
-                try{
-                    figures.add(getFigure(line));
-                }catch (Exception e){}
-            }
-
-            scanner.close();
-
-            Figure[] out = new Figure[figures.size()];
-            return figures.toArray(out);
-        } catch (FileNotFoundException e){
-            System.out.println(file + " nicht gefunden:\n" + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Fehler:\n" + e.getMessage());
-        }
-
-        throw new Exception("Es gab einen Fehler beim Parsen der Figuren.");
-    }
-
-    private Figure getFigure(String savedString) throws Exception {
+public class FigureParser {
+    public Figure parseFigure(String savedString) throws Exception {
         try{
             String[] parts = savedString.split(";");
             if(parts.length > 0){
@@ -82,8 +52,8 @@ public class FigureLoader {
                         c.setFillColor(parseColor(parts[1]));
                         return c;
 
-                        default:
-                            throw new Exception("Nicht unterstützte Figur");
+                    default:
+                        throw new Exception("Nicht unterstützte Figur");
                 }
             }
 

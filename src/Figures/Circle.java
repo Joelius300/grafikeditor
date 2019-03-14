@@ -16,4 +16,9 @@ public class Circle extends Figure {
     }
 
     public int getR(){ return r; }
+
+    @Override
+    public void draw(Graphics g){
+        g.fillOval(this.getX(), this.getY(), this.getR(), this.getR());
+    }
 }

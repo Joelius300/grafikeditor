@@ -2,12 +2,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import Figures.*;
+
+import Drawing.Drawing;
 
 /**
  * Die Klasse Display stellt ein Fenster auf dem Bildschirm zur Verf�gung, in welchem
@@ -18,8 +17,7 @@ import Figures.*;
  */
 @SuppressWarnings("serial")
 public class Display extends JFrame {
-  /** Die Liste der dargestellten Figur-Objekte */
-  private List<Figure> figures = new ArrayList<Figure>();
+  private Drawing drawing = new Drawing();
 
   /**
    * Konstruktor. Initialisiert das Fenster in der Mitte des Bildschirms und erzeugt ein
@@ -47,71 +45,37 @@ public class Display extends JFrame {
       @Override
       protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawFigures(g);
+        drawing.drawFigures(g);
       }
     });
   }
 
-  /**
-   * Zeichnet alle Figuren.
-   * @param g Referenz auf das Graphics-Objekt zum zeichnen.
-   */
-  private void drawFigures(Graphics g) {
-    for (Figure f : figures) {
-      g.setColor(f.getFillColor());
-
-      if (f instanceof Figures.Rectangle) {
-        Figures.Rectangle r = (Figures.Rectangle)f;
-        g.fillRect(r.getX(), r.getY(), r.getWidth(), r.getHeight());
-      }
-
-      if (f instanceof Figures.Circle) {
-        Figures.Circle c = (Figures.Circle)f;
-        g.fillOval(c.getX(), c.getY(), c.getR(), c.getR());
-      }
-
-      if (f instanceof Figures.Line) {
-        Figures.Line l = (Figures.Line)f;
-        g.drawLine(l.getX(), l.getY(), l.getXEnd(), l.getYEnd());
-      }
-
-      if (f instanceof Figures.Ellipse) {
-        Figures.Ellipse e = (Figures.Ellipse)f;
-        g.fillOval(e.getX(), e.getY(), e.getWidth(), e.getHeight());
-      }
-
-      /* TODO: Hier muss f�r jede weitere Figur-Klasse, welche dargestellt werden k�nnen muss,
-       * ein analoger Abschnitt, wie f�r die Rechteck-Klasse folgen.
-       */
-    }
+  public void setDrawing(Drawing drawing){
+      this.drawing = drawing;
+      repaint();
   }
 
-  /**
-   * F�gt eine weitere Figur hinzu und l�st die Auffrischung des Fensterinhaltes aus.
-   * @param figure Referenz auf das weitere Figur-Objekt.
-   */
-  public void add(Figure figure) {
-    figures.add(figure);
-    repaint();
+  public void clear(){
+      drawing = new Drawing();
+      repaint();
   }
 
-  public void add(Figure[] figures) {
-    for (Figure figure:
-         figures) {
-      this.figures.add(figure);
-    }
-    repaint();
-  }
-
-  public Figure[] getFigures(){
-    return this.figures.toArray(new Figure[figures.size()]);
-  }
-
-  /**
-   * L�scht alle Figuren und l�st die Auffrischung des Fensterinhaltes aus.
-   */
-  public void deleteAll() {
-    figures.clear();
-    repaint();
-  }
+//  public void addToCurrentDrawing(Figure figure) {
+//      drawing.add(figure);
+//      repaint();
+//  }
+//
+//  public void addToCurrentDrawing(Figure[] figures) {
+//      drawing.add(figures);
+//      repaint();
+//  }
+//
+//  public Figure[] getFiguresFromCurrentDrawing(){
+//      return drawing.getFigures();
+//  }
+//
+//  public void deleteAllFromCurrentDrawing() {
+//      drawing.deleteAll();
+//      repaint();
+//  }
 }

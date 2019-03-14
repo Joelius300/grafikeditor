@@ -26,4 +26,9 @@ public class Rectangle extends Figure {
     public int getHeight(){
         return height;
     }
+
+    @Override
+    public void draw(Graphics g){
+        g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    }
 }

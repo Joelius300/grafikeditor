@@ -32,4 +32,9 @@ public class Line extends Figure {
         this.xEnd += deltaX;
         this.yEnd += deltaY;
     }
+
+    @Override
+    public void draw(Graphics g){
+        g.drawLine(this.getX(), this.getY(), this.getXEnd(), this.getYEnd());
+    }
 }

@@ -26,4 +26,9 @@ public class Ellipse extends Figure {
     public int getHeight(){
         return height;
     }
+
+    @Override
+    public void draw(Graphics g){
+        g.fillOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    }
 }

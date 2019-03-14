@@ -1,4 +1,4 @@
-package StoringRestoring;
+package Drawing.StoringRestoring;
 
 import Figures.Figure;
 
