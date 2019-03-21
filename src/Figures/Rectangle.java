@@ -2,7 +2,7 @@ package Figures;
 
 import java.awt.*;
 
-public class Rectangle extends Figure {
+public final class Rectangle extends Figure {
     private int width, height;
 
     public Rectangle(int x, int y, int width, int height){

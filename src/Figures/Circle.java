@@ -2,7 +2,7 @@ package Figures;
 
 import java.awt.*;
 
-public class Circle extends Figure {
+public final class Circle extends Figure {
     private int r;
 
     public Circle(int x, int y, int r){

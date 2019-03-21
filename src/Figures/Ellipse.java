@@ -2,7 +2,7 @@ package Figures;
 
 import java.awt.*;
 
-public class Ellipse extends Figure {
+public final class Ellipse extends Figure {
     private int width, height;
 
     public Ellipse(int x, int y, int width, int height){

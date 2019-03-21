@@ -2,7 +2,7 @@ package Figures;
 
 import java.awt.*;
 
-public class Line extends Figure {
+public final class Line extends Figure {
     private int xEnd, yEnd;
 
     public Line(int xStart, int yStart, int xEnd, int yEnd) {
@@ -10,6 +10,12 @@ public class Line extends Figure {
 
         this.xEnd = xEnd;
         this.yEnd = yEnd;
+    }
+
+    public Line(Point firstPoint, Point secondPoint){
+        super(firstPoint.x, firstPoint.y);
+        this.xEnd = secondPoint.x;
+        this.yEnd = secondPoint.y;
     }
 
     public Line(int xStart, int yStart, int xEnd, int yEnd, Color color) {

@@ -1,3 +1,5 @@
+package Display;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -9,14 +11,14 @@ import javax.swing.JPanel;
 import Drawing.Drawing;
 
 /**
- * Die Klasse Display stellt ein Fenster auf dem Bildschirm zur Verf�gung, in welchem
+ * Die Klasse Display.Display stellt ein Fenster auf dem Bildschirm zur Verf�gung, in welchem
  * Figur-Objekte dargestellt werden k�nnen.
  * Siehe auch Java-Grundkurs Abschnitt 10.2 und 10.3.
  * 
  * @author Andres Scheidegger
  */
 @SuppressWarnings("serial")
-public class Display extends JFrame {
+public final class Display extends JFrame {
   private Drawing drawing = new Drawing();
 
   /**
