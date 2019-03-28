@@ -1,9 +1,7 @@
 package Display;
 
 import Drawing.Drawing;
-import Figures.Circle;
-import Figures.Figure;
-import Figures.Line;
+import Figures.*;
 import Figures.Rectangle;
 
 import java.awt.*;
@@ -60,10 +58,24 @@ public final class EditorControl {
         this.drawing.add(l);
         break;
       case 'c':
-        //noch nicht gut
-        Figure c = new Circle(xLower, yLower, width);
+        //bit janky
+        Figure c = new Circle(xLower, yLower, Circle.calcR(width,height));
         this.drawing.add(c);
         break;
+      case 'e':
+        Figure e = new Ellipse(xLower, yLower, width, height);
+        this.drawing.add(e);
+        break;
+//      case 't':
+//        Figure r1 = new Rectangle(xLower, yLower, width, height, Color.YELLOW);
+//        Figure e1 = new Ellipse(xLower, yLower, width, height, Color.BLUE);
+//        Figure c1 = new Circle(xLower, yLower, Circle.calcR(width,height), Color.RED);
+//        Figure l1 = new Line(this.firstPoint, secondPoint, Color.GREEN);
+//        this.drawing.add(r1);
+//        this.drawing.add(e1);
+//        this.drawing.add(c1);
+//        this.drawing.add(l1);
+//        break;
         default:
           System.out.println("Keine richtiger Typ");
           break;

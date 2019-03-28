@@ -12,6 +12,12 @@ public final class Line extends Figure {
         this.yEnd = yEnd;
     }
 
+    public Line(Point firstPoint, Point secondPoint, Color color){
+        super(firstPoint.x, firstPoint.y, color);
+        this.xEnd = secondPoint.x;
+        this.yEnd = secondPoint.y;
+    }
+
     public Line(Point firstPoint, Point secondPoint){
         super(firstPoint.x, firstPoint.y);
         this.xEnd = secondPoint.x;
