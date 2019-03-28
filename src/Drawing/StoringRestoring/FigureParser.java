@@ -61,18 +61,4 @@ public class FigureParser {
 
         throw new Exception("Es gab einen Fehler beim Parsen der Figur.");
     }
-
-    private Color parseColor(String colorString) {
-        try {
-            String[] parts = colorString.split(",");
-            int[] parsedParts = new int[4];
-            for (int i = 0; i < parsedParts.length; i++) {
-                parsedParts[i] = Integer.parseInt(parts[i]);
-            }
-
-            return new Color(parsedParts[0], parsedParts[1], parsedParts[2], parsedParts[3]);
-        } catch (Exception e) {
-            return Color.BLACK;
-        }
-    }
 }
