@@ -11,8 +11,14 @@ public final class EditorControl {
   private char figureType;
   private Point firstPoint;
 
+  private Figure nextToAdd;
+
   public void repaintAll(Graphics g) {
     drawing.drawFigures(g);
+  }
+
+  public void clear(){
+    drawing.deleteAll();
   }
 
   public void setFigureType(char figureType) {
@@ -20,11 +26,34 @@ public final class EditorControl {
     System.out.println(figureType);
   }
 
-  public void setFirstPoint(Point firstPoint) {
+  public void startShape(Point firstPoint) {
     this.firstPoint = firstPoint;
   }
 
-  public void createFigureWithSecondPoint(Point secondPoint) {
+  public void updateShape(Point currentPoint){
+    try {
+      nextToAdd = createFigure(currentPoint);
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+      return;
+    }
+
+    drawing.setPreviewFigure(nextToAdd);
+  }
+
+  public void endShape(Point secondPoint) {
+    try {
+      nextToAdd = createFigure(secondPoint);
+    }catch(Exception e){
+      System.out.println(e.getMessage());
+      return;
+    }
+
+    drawing.removePreviewFigure();
+    drawing.add(nextToAdd);
+  }
+
+  private Figure createFigure(Point secondPoint) throws Exception {
     int xLower, yLower, xHigher, yHigher;
 
     if(firstPoint.x < secondPoint.x){
@@ -48,37 +77,16 @@ public final class EditorControl {
 
     switch (figureType){
       case 'r':
-        //gut
-        Figure r = new Rectangle(xLower, yLower, width, height);
-        this.drawing.add(r);
-        break;
+        return new Rectangle(xLower, yLower, width, height);
       case 'l':
-        //gut
-        Figure l = new Line(this.firstPoint, secondPoint);
-        this.drawing.add(l);
-        break;
+        return new Line(this.firstPoint, secondPoint);
       case 'c':
-        //bit janky
-        Figure c = new Circle(xLower, yLower, Circle.calcR(width,height));
-        this.drawing.add(c);
-        break;
+        //janky
+        return new Circle(xLower, yLower, Circle.calcR(width,height));
       case 'e':
-        Figure e = new Ellipse(xLower, yLower, width, height);
-        this.drawing.add(e);
-        break;
-//      case 't':
-//        Figure r1 = new Rectangle(xLower, yLower, width, height, Color.YELLOW);
-//        Figure e1 = new Ellipse(xLower, yLower, width, height, Color.BLUE);
-//        Figure c1 = new Circle(xLower, yLower, Circle.calcR(width,height), Color.RED);
-//        Figure l1 = new Line(this.firstPoint, secondPoint, Color.GREEN);
-//        this.drawing.add(r1);
-//        this.drawing.add(e1);
-//        this.drawing.add(c1);
-//        this.drawing.add(l1);
-//        break;
-        default:
-          System.out.println("Keine richtiger Typ");
-          break;
+        return new Ellipse(xLower, yLower, width, height);
     }
+
+    throw new Exception("Kein richtiger Typ");
   }
 }

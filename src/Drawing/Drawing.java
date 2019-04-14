@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Drawing {
-    List<Figure> figures = new ArrayList<Figure>();
+    private List<Figure> figures = new ArrayList<Figure>();
+    private Figure previewFigure = null;
 
     public Drawing(Figure[] figures){
         this.add(figures);
@@ -23,6 +24,11 @@ public class Drawing {
         for (Figure f : figures) {
             g.setColor(f.getFillColor());
             f.draw(g);
+        }
+
+        if(previewFigure != null){
+            g.setColor(previewFigure.getFillColor());
+            previewFigure.draw(g);
         }
     }
 
@@ -41,6 +47,9 @@ public class Drawing {
         }
     }
 
+    public void setPreviewFigure(Figure figure){ previewFigure = figure; }
+    public void removePreviewFigure(){ previewFigure = null; }
+
     public Figure[] getFigures(){
         return this.figures.toArray(new Figure[figures.size()]);
     }
@@ -50,5 +59,9 @@ public class Drawing {
      */
     public void deleteAll() {
         figures.clear();
+    }
+
+    public void removeFigure(Figure figure){
+        if(figures.contains(figure)) figures.remove(figure);
     }
 }

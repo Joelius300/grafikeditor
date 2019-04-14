@@ -1,6 +1,8 @@
 package Display;
 
 import java.awt.Graphics;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -10,8 +12,10 @@ public final class EditorPanel extends JPanel {
 
   EditorPanel(EditorControl control) {
     editorControl = control;
-    addMouseListener(new EditorMouseAdapter(this, editorControl));
-    addKeyListener(new EditorKeyboardAdapter(editorControl));
+    MouseListener mouseListener = new EditorMouseAdapter(this, editorControl);
+    super.addMouseListener(mouseListener);
+    super.addMouseMotionListener((MouseMotionListener)mouseListener);
+    super.addKeyListener(new EditorKeyboardAdapter(this, editorControl));
   }
 
   // Die paintComponent()-Methode wird automatisch aufgerufen, wenn irgendwer die repaint()-
