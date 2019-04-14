@@ -4,8 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public final class EditorMouseAdapter extends MouseAdapter {
-    EditorControl control;
-    EditorPanel panel;
+    private EditorControl control;
+    private  EditorPanel panel;
 
     public EditorMouseAdapter(EditorPanel panel, EditorControl control){
         this.panel = panel;
@@ -14,14 +14,23 @@ public final class EditorMouseAdapter extends MouseAdapter {
 
     @Override
     public void mousePressed(MouseEvent arg0){
-        control.setFirstPoint(arg0.getPoint());
-        panel.repaint();
-        panel.grabFocus();
+        control.startShape(arg0.getPoint());
+        updatePanel();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent arg0){
+        control.updateShape(arg0.getPoint());
+        updatePanel();
     }
 
     @Override
     public void mouseReleased(MouseEvent arg0){
-        control.createFigureWithSecondPoint(arg0.getPoint());
+        control.endShape(arg0.getPoint());
+        updatePanel();
+    }
+
+    private void updatePanel(){
         panel.repaint();
         panel.grabFocus();
     }
