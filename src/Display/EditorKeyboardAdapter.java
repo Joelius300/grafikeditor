@@ -4,7 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 
-public class EditorKeyboardAdapter extends KeyAdapter {
+public final class EditorKeyboardAdapter extends KeyAdapter {
     private EditorControl control;
     private EditorPanel panel;
 

@@ -3,7 +3,7 @@ package Drawing.StoringRestoring.Factories;
 import Figures.Circle;
 import Figures.Figure;
 
-public class CircleFactory extends Factory {
+public final class CircleFactory extends Factory {
     @Override
     public Figure create(String[] parts){
         int[] parsedParts = new int[3];

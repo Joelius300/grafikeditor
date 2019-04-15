@@ -75,6 +75,7 @@ public final class EditorControl {
 
     int width = xHigher - xLower;
     int height = yHigher - yLower;
+    
 
     switch (figureType){
       case 'r':

@@ -2,7 +2,7 @@ package Drawing.StoringRestoring.Factories;
 
 import Figures.Figure;
 
-public class FigureFactory {
+public final class FigureFactory {
     public Figure create(String line) throws Exception {
         String[] parts = line.split(";");
 

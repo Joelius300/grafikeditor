@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FigureSaver {
+public final class FigureSaver {
     public void save(Figure figure, File file){
         try
         (BufferedWriter myWriter = new BufferedWriter(new FileWriter(file, false)))

@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FigureLoader {
+public final class FigureLoader {
     FigureFactory factory = new FigureFactory();
 
     private Figure[] restoreFigures(File file) throws Exception {

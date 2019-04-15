@@ -3,7 +3,7 @@ package Drawing.StoringRestoring.Factories;
 import Figures.Figure;
 import Figures.Line;
 
-public class LineFactory extends Factory {
+public final class LineFactory extends Factory {
     @Override
     public Figure create(String[] parts){
         int[] parsedParts = new int[4];

@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Drawing {
+public final class Drawing {
     private List<Figure> figures = new ArrayList<Figure>();
     private Figure previewFigure = null;
 
@@ -24,9 +24,18 @@ public class Drawing {
         }
 
         if(previewFigure != null){
-            g.setColor(previewFigure.getFillColor());
+            g.setColor(adjustAlpha(previewFigure.getFillColor(), 0.8f));
             previewFigure.draw(g);
         }
+    }
+
+    private Color adjustAlpha(Color color, float percent){
+        int a = color.getAlpha();
+        a *= percent;
+        if(a > 255) a = 255;
+        if(a < 0) a = 0;
+
+        return new Color(color.getRed(), color.getGreen(), color.getBlue(), a);
     }
 
     //preview

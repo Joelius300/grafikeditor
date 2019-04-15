@@ -3,7 +3,7 @@ package Drawing.StoringRestoring.Factories;
 import Figures.Ellipse;
 import Figures.Figure;
 
-public class EllipseFactory extends Factory {
+public final class EllipseFactory extends Factory {
     @Override
     public Figure create(String[] parts){
         int[] parsedParts = new int[4];
