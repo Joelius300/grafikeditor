@@ -1,5 +1,6 @@
 package Drawing.StoringRestoring;
 
+import Drawing.StoringRestoring.Factories.FigureFactory;
 import Figures.*;
 import Drawing.Drawing;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FigureLoader {
-    FigureParser parser = new FigureParser();
+    FigureFactory factory = new FigureFactory();
 
     private Figure[] restoreFigures(File file) throws Exception {
         try (Scanner scanner = new Scanner (file)) {
@@ -19,8 +20,10 @@ public class FigureLoader {
                 String line = scanner.nextLine();
                 //System.out.println(line);
                 try{
-                    figures.add(parser.parseFigure(line));
-                }catch (Exception e){}
+                    figures.add(factory.create(line));
+                }catch (Exception e){
+                    System.out.println(e.getMessage() + "\r\n" + line);
+                }
             }
 
             scanner.close();

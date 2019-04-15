@@ -34,9 +34,29 @@ public class EditorKeyboardAdapter extends KeyAdapter {
 
     private boolean handleSpecialKeys(KeyEvent e){
         int k = e.getKeyCode();
+        boolean isCtrlDown = (e.getModifiers() & KeyEvent.CTRL_MASK) != 0;
 
+        //clear drawing
         if(k == KeyEvent.VK_DELETE){
             control.clear();
+            return true;
+        }
+
+        //save drawing (fixed file)
+        if(k == KeyEvent.VK_S && isCtrlDown){
+            control.saveCurrentToFile();
+            return true;
+        }
+
+        //load drawing (fixed file)
+        if(k == KeyEvent.VK_L && isCtrlDown){
+            control.loadCurrentFromFile();
+            return true;
+        }
+
+        //delete latest figure in drawing
+        if(k == KeyEvent.VK_Z && isCtrlDown){
+            control.removeLatestFigure();
             return true;
         }
 

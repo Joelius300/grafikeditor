@@ -5,7 +5,7 @@ import Figures.Figure;
 import java.awt.*;
 
 public abstract class Factory {
-    public Color parseColor(String colorString) {
+    protected Color parseColor(String colorString) {
         try {
             String[] parts = colorString.split(",");
             int[] parsedParts = new int[4];

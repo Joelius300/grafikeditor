@@ -16,10 +16,7 @@ public class Drawing {
 
     public Drawing(){}
 
-    /**
-     * Zeichnet alle Figuren.
-     * @param g Referenz auf das Graphics-Objekt zum zeichnen.
-     */
+    //draw
     public void drawFigures(Graphics g) {
         for (Figure f : figures) {
             g.setColor(f.getFillColor());
@@ -32,10 +29,11 @@ public class Drawing {
         }
     }
 
-    /**
-     * F�gt eine weitere Figur hinzu.
-     * @param figure Referenz auf das weitere Figur-Objekt.
-     */
+    //preview
+    public void setPreviewFigure(Figure figure){ previewFigure = figure; }
+    public void removePreviewFigure(){ previewFigure = null; }
+
+    //add
     public void add(Figure figure) {
         figures.add(figure);
     }
@@ -47,21 +45,23 @@ public class Drawing {
         }
     }
 
-    public void setPreviewFigure(Figure figure){ previewFigure = figure; }
-    public void removePreviewFigure(){ previewFigure = null; }
-
+    //get
     public Figure[] getFigures(){
         return this.figures.toArray(new Figure[figures.size()]);
     }
 
-    /**
-     * L�scht alle Figuren.
-     */
+    //delete
     public void deleteAll() {
         figures.clear();
     }
 
-    public void removeFigure(Figure figure){
+    public void deleteFigure(Figure figure){
         if(figures.contains(figure)) figures.remove(figure);
+    }
+
+    public void deleteLatest(){
+        if(figures.size() > 0) {
+            figures.remove(figures.size() - 1);
+        }
     }
 }

@@ -1,17 +1,24 @@
 package Display;
 
 import Drawing.Drawing;
+import Drawing.StoringRestoring.FigureLoader;
+import Drawing.StoringRestoring.FigureSaver;
 import Figures.*;
 import Figures.Rectangle;
 
 import java.awt.*;
+import java.io.File;
 
 public final class EditorControl {
   private Drawing drawing = new Drawing();
+
+  private final FigureLoader LOADER = new FigureLoader();
+  private final FigureSaver SAVER = new FigureSaver();
+
+  private final File SAVEFILE = new File("drawing");
+
   private char figureType;
   private Point firstPoint;
-
-  private Figure nextToAdd;
 
   public void repaintAll(Graphics g) {
     drawing.drawFigures(g);
@@ -32,25 +39,19 @@ public final class EditorControl {
 
   public void updateShape(Point currentPoint){
     try {
-      nextToAdd = createFigure(currentPoint);
+      drawing.setPreviewFigure(createFigure(currentPoint));
     }catch(Exception e){
       System.out.println(e.getMessage());
-      return;
     }
-
-    drawing.setPreviewFigure(nextToAdd);
   }
 
   public void endShape(Point secondPoint) {
     try {
-      nextToAdd = createFigure(secondPoint);
+      drawing.removePreviewFigure();
+      drawing.add(createFigure(secondPoint));
     }catch(Exception e){
       System.out.println(e.getMessage());
-      return;
     }
-
-    drawing.removePreviewFigure();
-    drawing.add(nextToAdd);
   }
 
   private Figure createFigure(Point secondPoint) throws Exception {
@@ -80,13 +81,24 @@ public final class EditorControl {
         return new Rectangle(xLower, yLower, width, height);
       case 'l':
         return new Line(this.firstPoint, secondPoint);
-      case 'c':
-        //janky
+      case 'c': //janky
         return new Circle(xLower, yLower, Circle.calcR(width,height));
       case 'e':
         return new Ellipse(xLower, yLower, width, height);
     }
 
     throw new Exception("Kein richtiger Typ");
+  }
+
+  public void saveCurrentToFile() {
+    SAVER.Save(drawing.getFigures(), SAVEFILE);
+  }
+
+  public void loadCurrentFromFile() {
+    this.drawing = LOADER.restoreDrawing(SAVEFILE);
+  }
+
+  public void removeLatestFigure() {
+    this.drawing.deleteLatest();
   }
 }
