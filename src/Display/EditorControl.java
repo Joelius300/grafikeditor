@@ -15,7 +15,7 @@ public final class EditorControl {
   private final FigureLoader LOADER = new FigureLoader();
   private final FigureSaver SAVER = new FigureSaver();
 
-  private final File SAVEFILE = new File("drawing");
+  private final File SAVEFILE = new File("default.drawing");
 
   private char figureType;
   private Point firstPoint;
