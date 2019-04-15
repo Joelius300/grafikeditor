@@ -91,7 +91,7 @@ public final class EditorControl {
   }
 
   public void saveCurrentToFile() {
-    SAVER.Save(drawing.getFigures(), SAVEFILE);
+    SAVER.save(drawing.getFigures(), SAVEFILE);
   }
 
   public void loadCurrentFromFile() {

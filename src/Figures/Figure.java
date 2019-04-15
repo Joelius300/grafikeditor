@@ -21,18 +21,30 @@ public abstract class Figure {
     public int getX(){ return x; }
     public int getY() { return y; }
 
+    //color
     public void setFillColor(Color fillColor) {
         this.fillColor = fillColor;
     }
-
     public Color getFillColor(){
         return this.fillColor;
     }
 
+    //saving
+    protected String generateColorString(){
+        return  fillColor.getRed() + "," +
+                fillColor.getGreen() + "," +
+                fillColor.getBlue() + "," +
+                fillColor.getAlpha();
+    }
+
+    public abstract String generateSavingString();
+
+    //transform
     public void move(int deltaX, int deltaY){
         this.x += deltaX;
         this.y += deltaY;
     }
 
+    //visualisation
     public abstract void draw(Graphics g);
 }

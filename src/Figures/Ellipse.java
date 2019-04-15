@@ -31,4 +31,14 @@ public final class Ellipse extends Figure {
     public void draw(Graphics g){
         g.fillOval(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
+
+    @Override
+    public String generateSavingString(){
+        return this.getClass().getSimpleName() + ";" +
+                generateColorString() + ";" +
+                this.getX() + ";" +
+                this.getY() + ";" +
+                this.getWidth() + ";" +
+                this.getHeight();
+    }
 }

@@ -30,7 +30,7 @@ public class FigureLoader {
 
             Figure[] out = new Figure[figures.size()];
             return figures.toArray(out);
-        } catch (FileNotFoundException e){
+        }catch (FileNotFoundException e){
             System.out.println(file + " nicht gefunden:\n" + e.getMessage());
         }
 
@@ -39,8 +39,8 @@ public class FigureLoader {
 
     public Drawing restoreDrawing(File file){
         try {
-            return new Drawing(this.restoreFigures(file));
-        }catch( Exception ex){
+            return new Drawing(restoreFigures(file));
+        }catch(Exception ex){
             System.out.println(ex.getMessage());
             return new Drawing();
         }

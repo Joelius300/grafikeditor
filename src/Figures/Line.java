@@ -49,4 +49,14 @@ public final class Line extends Figure {
     public void draw(Graphics g){
         g.drawLine(this.getX(), this.getY(), this.getXEnd(), this.getYEnd());
     }
+
+    @Override
+    public String generateSavingString(){
+        return this.getClass().getSimpleName() + ";" +
+                generateColorString() + ";" +
+                this.getX() + ";" +
+                this.getY() + ";" +
+                this.getXEnd() + ";" +
+                this.getYEnd();
+    }
 }

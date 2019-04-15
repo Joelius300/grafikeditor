@@ -31,4 +31,14 @@ public final class Rectangle extends Figure {
     public void draw(Graphics g){
         g.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
+
+    @Override
+    public String generateSavingString(){
+        return this.getClass().getSimpleName() + ";" +
+                generateColorString() + ";" +
+                this.getX() + ";" +
+                this.getY() + ";" +
+                this.getWidth() + ";" +
+                this.getHeight();
+    }
 }

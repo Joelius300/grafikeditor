@@ -25,4 +25,13 @@ public final class Circle extends Figure {
     public static int calcR(int width, int height){
         return (int)(Math.sqrt(width*width + height*height) / 2);
     }
+
+    @Override
+    public String generateSavingString(){
+        return this.getClass().getSimpleName() + ";" +
+                generateColorString() + ";" +
+                this.getX() + ";" +
+                this.getY() + ";" +
+                this.getR();
+    }
 }
