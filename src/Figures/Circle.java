@@ -23,7 +23,7 @@ public final class Circle extends Figure {
     }
 
     public static int calcR(int width, int height){
-        return (int)(Math.sqrt(width*width + height*height) / 2);
+        return (int)(Math.sqrt(width*width + height*height));
     }
 
     @Override

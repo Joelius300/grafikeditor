@@ -82,8 +82,9 @@ public final class EditorControl {
         return new Rectangle(xLower, yLower, width, height);
       case 'l':
         return new Line(this.firstPoint, secondPoint);
-      case 'c': //janky
-        return new Circle(xLower, yLower, Circle.calcR(width,height));
+      case 'c':
+        int r = Circle.calcR(width,height);
+        return new Circle(firstPoint.x - r, firstPoint.y - r, r);
       case 'e':
         return new Ellipse(xLower, yLower, width, height);
     }
