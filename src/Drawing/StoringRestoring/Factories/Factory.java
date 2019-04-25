@@ -42,7 +42,7 @@ public abstract class Factory {
         int width = xHigher - xLower;
         int height = yHigher - yLower;
 
-        return new UsefulDrawingData(xLower, xHigher, width, height);
+        return new UsefulDrawingData(xLower, yLower, width, height);
     }
 
     public abstract Figure create(String[] parts);
@@ -56,8 +56,6 @@ public abstract class Factory {
             this.yLower = yLower;
             this.width = width;
             this.height = height;
-
-            System.out.println(this);
         }
 
         public int getXLower() {

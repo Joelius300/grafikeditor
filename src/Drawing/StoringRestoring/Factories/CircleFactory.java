@@ -23,6 +23,6 @@ public final class CircleFactory extends Factory {
         UsefulDrawingData data = calcUsefulDrawingData(P1, P2);
 
         int r = Circle.calcR(data.getWidth(),data.getHeight());
-        return new Circle(P1.x - r, P2.y - r, r);
+        return new Circle(P1.x - r, P1.y - r, r);
     }
 }

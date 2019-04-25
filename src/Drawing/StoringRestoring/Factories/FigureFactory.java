@@ -33,7 +33,7 @@ public final class FigureFactory {
         if (_factoryCache.containsKey(identifier)) {
             factory = _factoryCache.get(identifier);
             if(factory != null) {
-                System.out.println("Factory from Cache");
+                //Factory from Cache
                 return factory;
             }
         }
@@ -41,10 +41,8 @@ public final class FigureFactory {
         Class<?> c = Class.forName("Drawing.StoringRestoring.Factories." + identifier + "Factory");
         factory =  (Factory)c.newInstance();
         _factoryCache.put(identifier, factory);
-        System.out.println("New factory");
 
+        //New factory
         return factory;
     }
-
-
 }
