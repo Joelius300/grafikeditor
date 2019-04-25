@@ -3,6 +3,8 @@ package Drawing.StoringRestoring.Factories;
 import Figures.Figure;
 import Figures.Line;
 
+import java.awt.*;
+
 public final class LineFactory extends Factory {
     @Override
     public Figure create(String[] parts){
@@ -14,5 +16,10 @@ public final class LineFactory extends Factory {
         Line l = new Line(parsedParts[0], parsedParts[1], parsedParts[2], parsedParts[3]);
         l.setFillColor(parseColor(parts[1]));
         return l;
+    }
+
+    @Override
+    public Figure create(Point P1, Point P2){
+        return new Line(P1, P2);
     }
 }

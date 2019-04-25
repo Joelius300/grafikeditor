@@ -1,13 +1,14 @@
 package Display;
 
 import Drawing.Drawing;
+import Drawing.StoringRestoring.Factories.FigureFactory;
 import Drawing.StoringRestoring.FigureLoader;
 import Drawing.StoringRestoring.FigureSaver;
-import Figures.*;
-import Figures.Rectangle;
+import Figures.Figure;
 
 import java.awt.*;
 import java.io.File;
+import java.util.HashMap;
 
 public final class EditorControl {
   private Drawing drawing = new Drawing();
@@ -19,6 +20,16 @@ public final class EditorControl {
 
   private char figureType;
   private Point firstPoint;
+
+  private final FigureFactory factory = new FigureFactory();
+  private final HashMap<Character, String> typeMap = new HashMap<Character, String>(){
+    {
+      put('r', "Rectangle");
+      put('e', "Ellipse");
+      put('l', "Line");
+      put('c', "Circle");
+    }
+  };
 
   public void repaintAll(Graphics g) {
     drawing.drawFigures(g);
@@ -55,41 +66,12 @@ public final class EditorControl {
   }
 
   private Figure createFigure(Point secondPoint) throws Exception {
-    int xLower, yLower, xHigher, yHigher;
-
-    if(firstPoint.x < secondPoint.x){
-      xLower =  firstPoint.x;
-      xHigher = secondPoint.x;
-    }else{
-      xHigher =  firstPoint.x;
-      xLower = secondPoint.x;
+    //create the new object
+    try{
+      return factory.create(typeMap.get(figureType), firstPoint, secondPoint);
+    }catch (Exception e) {
+      throw new Exception("Kein richtiger Typ");
     }
-
-    if(firstPoint.y < secondPoint.y){
-      yLower =  firstPoint.y;
-      yHigher = secondPoint.y;
-    }else{
-      yHigher =  firstPoint.y;
-      yLower = secondPoint.y;
-    }
-
-    int width = xHigher - xLower;
-    int height = yHigher - yLower;
-    
-
-    switch (figureType){
-      case 'r':
-        return new Rectangle(xLower, yLower, width, height);
-      case 'l':
-        return new Line(this.firstPoint, secondPoint);
-      case 'c':
-        int r = Circle.calcR(width,height);
-        return new Circle(firstPoint.x - r, firstPoint.y - r, r);
-      case 'e':
-        return new Ellipse(xLower, yLower, width, height);
-    }
-
-    throw new Exception("Kein richtiger Typ");
   }
 
   public void saveCurrentToFile() {
