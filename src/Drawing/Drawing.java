@@ -3,12 +3,23 @@ package Drawing;
 import Figures.Figure;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Drawing {
     private List<Figure> figures = new ArrayList<Figure>();
     private Figure previewFigure = null;
+
+    private File saveFile = null;
+
+    public File getSaveFile() {
+        return saveFile;
+    }
+
+    public void setSaveFile(File saveFile) {
+        this.saveFile = saveFile;
+    }
 
     public Drawing(Figure[] figures){
         this.add(figures);

@@ -2,7 +2,6 @@ package Display;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 public final class EditorKeyboardAdapter extends KeyAdapter {
     private EditorControl control;
@@ -44,13 +43,13 @@ public final class EditorKeyboardAdapter extends KeyAdapter {
 
         //save drawing (fixed file)
         if(k == KeyEvent.VK_S && isCtrlDown){
-            control.saveCurrentToFile();
+            control.saveCurrentDrawing(false);
             return true;
         }
 
         //load drawing (fixed file)
         if(k == KeyEvent.VK_L && isCtrlDown){
-            control.loadCurrentFromFile();
+            control.promptLoadDrawing();
             return true;
         }
 

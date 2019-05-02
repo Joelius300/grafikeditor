@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class FigureLoader {
-    FigureFactory factory = new FigureFactory();
+    private final FigureFactory factory = new FigureFactory();
 
     private Figure[] restoreFigures(File file) throws Exception {
         try (Scanner scanner = new Scanner (file)) {

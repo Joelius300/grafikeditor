@@ -6,6 +6,7 @@ import Drawing.StoringRestoring.FigureLoader;
 import Drawing.StoringRestoring.FigureSaver;
 import Figures.Figure;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
@@ -13,10 +14,14 @@ import java.util.HashMap;
 public final class EditorControl {
   private Drawing drawing = new Drawing();
 
+  private JFrame parentFrame;
+
+  public EditorControl(JFrame parentFrame){
+    this.parentFrame = parentFrame;
+  }
+
   private final FigureLoader LOADER = new FigureLoader();
   private final FigureSaver SAVER = new FigureSaver();
-
-  private final File SAVEFILE = new File("default.drawing");
 
   private char figureType;
   private Point firstPoint;
@@ -74,12 +79,46 @@ public final class EditorControl {
     }
   }
 
-  public void saveCurrentToFile() {
-    SAVER.save(drawing.getFigures(), SAVEFILE);
+  public void saveCurrentDrawing(boolean prompt) {
+    File file = drawing.getSaveFile();
+    if(file == null){
+      if(!prompt) return;
+      promptSaveDrawing();
+    }else{
+      SAVER.save(drawing.getFigures(), file);
+    }
   }
 
-  public void loadCurrentFromFile() {
-    this.drawing = LOADER.restoreDrawing(SAVEFILE);
+  public void promptLoadDrawing() {
+    FileDialog fd = new FileDialog(parentFrame, "Laden Sie Ihre Zeichung", FileDialog.LOAD);
+    fd.setDirectory("C:\\");
+    fd.setFile("drawing.txt");
+    fd.setVisible(true);
+
+    if (fd.getFile() == null || fd.getFile().isEmpty()) return;
+
+    String path = fd.getDirectory() + fd.getFile();
+    File file = new File(path);
+    loadDrawing(file);
+    parentFrame.repaint();
+  }
+
+  public void promptSaveDrawing() {
+    FileDialog fd = new FileDialog(parentFrame, "Speichern Sie Ihre Zeichung", FileDialog.SAVE);
+    fd.setDirectory("C:\\");
+    fd.setFile("drawing.txt");
+    fd.setVisible(true);
+
+    if (fd.getFile() == null || fd.getFile().isEmpty()) return;
+
+    String path = fd.getDirectory() + fd.getFile();
+    File file = new File(path);
+    drawing.setSaveFile(file);
+    saveCurrentDrawing(false);
+  }
+
+  private void loadDrawing(File file) {
+    this.drawing = LOADER.restoreDrawing(file);
   }
 
   public void removeLatestFigure() {
