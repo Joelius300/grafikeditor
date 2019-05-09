@@ -100,6 +100,7 @@ public final class EditorControl {
     String path = fd.getDirectory() + fd.getFile();
     File file = new File(path);
     loadDrawing(file);
+    drawing.setSaveFile(file);
     parentFrame.repaint();
   }
 

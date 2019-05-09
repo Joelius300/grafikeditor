@@ -43,7 +43,7 @@ public final class EditorKeyboardAdapter extends KeyAdapter {
 
         //save drawing (fixed file)
         if(k == KeyEvent.VK_S && isCtrlDown){
-            control.saveCurrentDrawing(false);
+            control.saveCurrentDrawing(true);
             return true;
         }
 
