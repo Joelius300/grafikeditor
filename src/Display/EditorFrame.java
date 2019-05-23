@@ -3,7 +3,6 @@ package Display;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.*;
 
@@ -21,7 +20,7 @@ public final class EditorFrame extends JFrame {
 
     private void replaceAndSetEditorPanel() {
         control = new EditorControl(this);
-        JPanel panel = new EditorPanel(control);
+        final JPanel panel = new EditorPanel(control);
 
         super.setContentPane(panel);
         panel.setFocusable(true);
@@ -29,8 +28,8 @@ public final class EditorFrame extends JFrame {
     }
 
     private void centerWindow(int width, int height) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Rectangle cutout = new Rectangle();
+        final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        final Rectangle cutout = new Rectangle();
         cutout.width = width;
         cutout.height = height;
         cutout.x = (screenSize.width - cutout.width) / 2;
@@ -39,10 +38,10 @@ public final class EditorFrame extends JFrame {
     }
 
     private void createJMenu(){
-        JMenuBar bar = new JMenuBar();
-        JMenuItem save = new JMenuItem("Save");
+        final JMenuBar bar = new JMenuBar();
+        final JMenuItem save = new JMenuItem("Save");
         save.addActionListener(new SaveListener(this));
-        JMenuItem load = new JMenuItem("Load");
+        final JMenuItem load = new JMenuItem("Load");
         load.addActionListener(new LoadListener(this));
 
         bar.add(save);
@@ -52,7 +51,7 @@ public final class EditorFrame extends JFrame {
     }
 
     private class SaveListener implements ActionListener{
-        public JFrame frame;
+        public final JFrame frame;
 
         public SaveListener(JFrame frame) {
             this.frame = frame;
@@ -65,7 +64,7 @@ public final class EditorFrame extends JFrame {
     }
 
     private class LoadListener implements ActionListener{
-        public JFrame frame;
+        public final JFrame frame;
 
         public LoadListener(JFrame frame) {
             this.frame = frame;

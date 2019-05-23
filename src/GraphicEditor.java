@@ -1,4 +1,3 @@
-import Display.Display;
 import Display.EditorFrame;
 
 public final class GraphicEditor {
@@ -8,6 +7,6 @@ public final class GraphicEditor {
 
     private GraphicEditor() {
         @SuppressWarnings("unused")
-        EditorFrame frame = new EditorFrame(1000, 800);
+        final EditorFrame frame = new EditorFrame(1000, 800);
     }
 }

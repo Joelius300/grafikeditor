@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public final class EditorPanel extends JPanel {
-  private EditorControl editorControl;
+  private final EditorControl editorControl;
 
   EditorPanel(EditorControl control) {
     editorControl = control;
-    MouseListener mouseListener = new EditorMouseAdapter(this, editorControl);
+    final MouseListener mouseListener = new EditorMouseAdapter(this, editorControl);
     super.addMouseListener(mouseListener);
     super.addMouseMotionListener((MouseMotionListener)mouseListener);
     super.addKeyListener(new EditorKeyboardAdapter(this, editorControl));

@@ -6,7 +6,6 @@ import Drawing.StoringRestoring.FigureLoader;
 import Drawing.StoringRestoring.FigureSaver;
 import Figures.Figure;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
@@ -14,11 +13,7 @@ import java.util.HashMap;
 public final class EditorControl {
   private Drawing drawing = new Drawing();
 
-  private JFrame parentFrame;
-
-  public EditorControl(JFrame parentFrame){
-    this.parentFrame = parentFrame;
-  }
+  private EditorFrame parentFrame;
 
   private final FigureLoader LOADER = new FigureLoader();
   private final FigureSaver SAVER = new FigureSaver();
@@ -35,6 +30,10 @@ public final class EditorControl {
       put('c', "Circle");
     }
   };
+
+  public EditorControl(EditorFrame parentFrame){
+    this.parentFrame = parentFrame;
+  }
 
   public void repaintAll(Graphics g) {
     drawing.drawFigures(g);
@@ -90,15 +89,15 @@ public final class EditorControl {
   }
 
   public void promptLoadDrawing() {
-    FileDialog fd = new FileDialog(parentFrame, "Laden Sie Ihre Zeichung", FileDialog.LOAD);
+    final FileDialog fd = new FileDialog(parentFrame, "Laden Sie Ihre Zeichung", FileDialog.LOAD);
     fd.setDirectory("C:\\");
     fd.setFile("drawing.txt");
     fd.setVisible(true);
 
     if (fd.getFile() == null || fd.getFile().isEmpty()) return;
 
-    String path = fd.getDirectory() + fd.getFile();
-    File file = new File(path);
+    final String path = fd.getDirectory() + fd.getFile();
+    final File file = new File(path);
     loadDrawing(file);
     drawing.setSaveFile(file);
     parentFrame.repaint();

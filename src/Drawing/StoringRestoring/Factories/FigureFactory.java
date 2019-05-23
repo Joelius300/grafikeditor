@@ -9,7 +9,7 @@ public final class FigureFactory {
     private final HashMap<String, Factory> _factoryCache = new HashMap<String, Factory>();
 
     public Figure create(String line) throws Exception {
-        String[] parts = line.split(";");
+        final String[] parts = line.split(";");
 
         try {
             Factory factory = getCorrespondingFactory(parts[0]);

@@ -13,14 +13,14 @@ public final class CircleFactory extends Factory {
             parsedParts[i] = Integer.parseInt(parts[i+2]);
         }
 
-        Circle c = new Circle(parsedParts[0], parsedParts[1], parsedParts[2]);
+        final Circle c = new Circle(parsedParts[0], parsedParts[1], parsedParts[2]);
         c.setFillColor(parseColor(parts[1]));
         return c;
     }
 
     @Override
     public Figure create(Point P1, Point P2){
-        UsefulDrawingData data = calcUsefulDrawingData(P1, P2);
+        final UsefulDrawingData data = calcUsefulDrawingData(P1, P2);
 
         int r = Circle.calcR(data.getWidth(),data.getHeight());
         return new Circle(P1.x - r, P1.y - r, r);

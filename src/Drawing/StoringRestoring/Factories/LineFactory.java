@@ -13,7 +13,7 @@ public final class LineFactory extends Factory {
             parsedParts[i] = Integer.parseInt(parts[i+2]);
         }
 
-        Line l = new Line(parsedParts[0], parsedParts[1], parsedParts[2], parsedParts[3]);
+        final Line l = new Line(parsedParts[0], parsedParts[1], parsedParts[2], parsedParts[3]);
         l.setFillColor(parseColor(parts[1]));
         return l;
     }

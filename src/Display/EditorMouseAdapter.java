@@ -4,8 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public final class EditorMouseAdapter extends MouseAdapter {
-    private EditorControl control;
-    private  EditorPanel panel;
+    private final EditorControl control;
+    private final EditorPanel panel;
 
     public EditorMouseAdapter(EditorPanel panel, EditorControl control){
         this.panel = panel;

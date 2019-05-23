@@ -4,8 +4,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public final class EditorKeyboardAdapter extends KeyAdapter {
-    private EditorControl control;
-    private EditorPanel panel;
+    private final EditorControl control;
+    private final EditorPanel panel;
 
     private boolean keyAlreadyHandled;
 

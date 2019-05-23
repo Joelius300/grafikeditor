@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Drawing {
-    private List<Figure> figures = new ArrayList<Figure>();
+    private final List<Figure> figures = new ArrayList<Figure>();
     private Figure previewFigure = null;
 
     private File saveFile = null;
