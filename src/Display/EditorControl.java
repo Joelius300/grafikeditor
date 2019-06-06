@@ -6,14 +6,17 @@ import Drawing.StoringRestoring.FigureLoader;
 import Drawing.StoringRestoring.FigureSaver;
 import Figures.Figure;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 
+import static javax.swing.JOptionPane.YES_OPTION;
+
 public final class EditorControl {
   private Drawing drawing = new Drawing();
 
-  private EditorFrame parentFrame;
+  private final EditorFrame parentFrame;
 
   private final FigureLoader LOADER = new FigureLoader();
   private final FigureSaver SAVER = new FigureSaver();
@@ -88,7 +91,20 @@ public final class EditorControl {
     }
   }
 
+  private boolean confirmWarningUnsavedMessage(){
+    final int n = JOptionPane.showConfirmDialog(
+            parentFrame,
+            "Ungespeicherte Änderungen werden verworfen.\n" +
+                    "Fortfahren?",
+            "Ungespeicherte Änderungen werden verworfen",
+            JOptionPane.YES_NO_OPTION);
+
+    return n == YES_OPTION;
+  }
+
   public void promptLoadDrawing() {
+    if(!confirmWarningUnsavedMessage()) return;
+
     final FileDialog fd = new FileDialog(parentFrame, "Laden Sie Ihre Zeichung", FileDialog.LOAD);
     fd.setDirectory("C:\\");
     fd.setFile("drawing.txt");
@@ -104,15 +120,15 @@ public final class EditorControl {
   }
 
   public void promptSaveDrawing() {
-    FileDialog fd = new FileDialog(parentFrame, "Speichern Sie Ihre Zeichung", FileDialog.SAVE);
+    final FileDialog fd = new FileDialog(parentFrame, "Speichern Sie Ihre Zeichung", FileDialog.SAVE);
     fd.setDirectory("C:\\");
     fd.setFile("drawing.txt");
     fd.setVisible(true);
 
     if (fd.getFile() == null || fd.getFile().isEmpty()) return;
 
-    String path = fd.getDirectory() + fd.getFile();
-    File file = new File(path);
+    final String path = fd.getDirectory() + fd.getFile();
+    final File file = new File(path);
     drawing.setSaveFile(file);
     saveCurrentDrawing(false);
   }
